@@ -7,7 +7,7 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET || "";
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || "";
 
-const ACCESS_TOKEN_EXP = (process.env.ACCESS_TOKEN_EXP || "30m") as `${number}${"s" | "m" | "h" | "d"}`;
+const ACCESS_TOKEN_EXP = (process.env.ACCESS_TOKEN_EXP || "1m") as `${number}${"s" | "m" | "h" | "d"}`;
 const REFRESH_TOKEN_EXP = (process.env.REFRESH_TOKEN_EXP || "7d") as `${number}${"s" | "m" | "h" | "d"}`;
 
 export const signAccessToken = (user: IUser): string => {
