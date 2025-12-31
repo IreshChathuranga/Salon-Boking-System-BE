@@ -16,7 +16,7 @@ const paymentSchema = new Schema<IPayment>(
     stripeSessionId: {
       type: String,
       required: true,
-      unique: true, // 🔥 KEY FIX
+      unique: true, 
     },
     amount: Number,
     currency: String,

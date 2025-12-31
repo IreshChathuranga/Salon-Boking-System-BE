@@ -105,3 +105,18 @@ export const updateBooking = async (req: any, res: Response) => {
 
   res.json(updatedBooking)
 }
+
+export const getMyBookings = async (req: any, res: Response) => {
+  try {
+    const userId = req.user.sub;
+
+    const bookings = await Booking.find({ user: userId })
+      .populate("user", "name email")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json(bookings);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to load booking history" });
+  }
+}
+

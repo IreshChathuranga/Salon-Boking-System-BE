@@ -103,3 +103,19 @@ export const confirmPayment = async (req: any, res: Response) => {
   }
 };
 
+export const getAllPayments = async (req: any, res: Response) => {
+  try {
+    const payments = await Payment.find()
+      .populate("user", "name email")                
+      .populate({
+        path: "bookingIds",
+        select: "serviceName bookingDate bookingTime servicePrice"
+      })                                              
+      .sort({ createdAt: -1 })                       
+
+    res.status(200).json(payments)
+  } catch (error) {
+    console.error("Get all payments error:", error)
+    res.status(500).json({ message: "Failed to fetch payments" })
+  }
+}

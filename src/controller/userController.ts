@@ -131,36 +131,6 @@ export const updateCredentials = async (req: any, res: Response) => {
     }
 };
 
-
-// export const registerAdmin = async (req: AuthRequest, res: Response) => {
-//     try {
-//         const { firstname, lastname, email, password } = req.body;
-//     } catch (error) {
-
-//     }
-// }
-
-// export const refreshToken = async (req: Request, res: Response) => {
-//   const { token } = req.body;
-//   if (!token) return res.status(400).json({ message: "Refresh token missing" });
-
-// //   const payload = verifyRefreshToken(token) as JwtPayload | null;
-//   const payload = verifyRefreshToken(token);
-//   if (!payload) return res.status(401).json({ message: "Invalid refresh token" });
-
-//   try {
-//     const user = await User.findById(payload.sub);
-//     if (!user) return res.status(404).json({ message: "User not found" });
-
-//     const accessToken = signAccessToken(user);
-//     const refreshToken = signRefreshToken(user); // optional: rotate refresh token
-
-//     return res.status(200).json({ accessToken, refreshToken });
-//   } catch (err: any) {
-//     return res.status(500).json({ message: err.message || "Something went wrong" });
-//   }
-// };
-
 export const refreshToken = async (req: Request, res: Response) => {
     const { token } = req.body;
     if (!token) return res.status(400).json({ message: "Refresh token required" });
