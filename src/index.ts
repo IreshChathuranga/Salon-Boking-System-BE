@@ -50,7 +50,3 @@ mongoose
     console.error(`DB connection fail: ${err}`)
     process.exit(1)
   })
-
-app.listen(SERVER_PORT, () => {
-  console.log(`Server is running on ${SERVER_PORT}`)
-})
