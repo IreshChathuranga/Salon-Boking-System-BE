@@ -23,7 +23,6 @@ const app = express()
 app.use(
   cors({
     origin: ["http://localhost:5173","https://salon-boking-system-fe.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 )
@@ -33,6 +32,12 @@ app.post(
   stripeWebhook
 )
 app.use(express.json())
+app.get("/", (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Salon Booking Backend is running 🚀"
+  });
+});
 app.use("/api/v1/payment", paymentRouter)
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/profile", profileRouter)
@@ -41,16 +46,11 @@ app.use("/api/v1/service", serviceRouter);
 app.use("/api/v1/booking", bookingRouter)
 app.use("/api/v1/admin", adminRoutes);
 
-mongoose
-  .connect(MONGO_URI)
-  .then(() => {
-    console.log("DB connected")
-  })
-  .catch((err) => {
-    console.error(`DB connection fail: ${err}`)
-    process.exit(1)
-  })
+mongoose.connect(process.env.MONGO_URI!)
+  .then(() => console.log("DB connected"))
+  .catch(err => {
+    console.error("DB error", err);
+    throw err;
+  });
 
-app.listen(SERVER_PORT, () => {
-  console.log(`Server is running on ${SERVER_PORT}`)
-})
+export default app;
