@@ -32,6 +32,7 @@ MongoDB Atlas is used as the database.
   - User registration
   - User login
   - JWT token security
+  - **Google login / registration** (OAuth 2.0)
 - **CRUD Operations**
   - Users, Profiles, Staff, Services, Bookings
 - **Advanced Features**
@@ -39,6 +40,22 @@ MongoDB Atlas is used as the database.
   - Email notifications
   - Admin-specific routes for user and booking management
 
+---
+
+### Google Authentication
+
+The backend supports **Google login and registration** using OAuth 2.0. Users can sign in or register with their Google account instead of creating a new account manually.
+
+**How it works:**
+- Users visit: `GET /api/v1/auth/google` → Redirects to Google login page
+- The backend creates a new user if it’s their first login or finds an existing user.
+- A **JWT token** is generated and sent to the frontend for authentication.
+
+**Required environment variables:**
+```env
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
 ---
 
 ## How to Run Backend Locally
