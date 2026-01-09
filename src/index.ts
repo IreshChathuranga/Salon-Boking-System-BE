@@ -7,7 +7,6 @@ import profileRouter from "./router/profileRouter";
 import staffRouter from "./router/staffRouter";
 import serviceRouter from "./router/serviceRouter";
 import bookingRouter from "./router/bookingRouter"
-import bodyParser from "body-parser"
 import { stripeWebhook } from "./controller/stripeWebhook"
 import paymentRouter from "./router/paymentRouter"
 import adminRoutes from "./router/adminUserRouter";
@@ -22,8 +21,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: ["http://localhost:5173","https://salon-boking-system-fe.vercel.app/"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: ["http://localhost:5173","https://salon-boking-system-fe.vercel.app"],
     credentials: true,
   })
 )
